@@ -1,0 +1,38 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    # application 이름 적용
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/BeomjunLee/spring-cloud-config
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,beans,httptrace,busrefresh
+
+
+
+#  profiles:
+#    active: native
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: file://폴더 주소
+
+
+#
+#        # spring-config 생성한 깃 저장소 주소 (파일주소)
+##          uri: file:///Users/leebeomjun/desktop/git/spring-cloud-config

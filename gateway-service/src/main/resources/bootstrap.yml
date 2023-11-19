@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      # config 설정한 서버 주소
+      uri: http://127.0.0.1:8888
+      name: ecommerce
+  profiles:
+    active: prod

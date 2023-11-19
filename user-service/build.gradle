@@ -1,0 +1,66 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.msa'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2020.0.2")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	//security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//jwt
+	compile'io.jsonwebtoken:jjwt-api:0.11.2'
+	runtime'io.jsonwebtoken:jjwt-impl:0.11.2', 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+	//eureka discovery client
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	//h2
+	runtimeOnly 'com.h2database:h2:1.4.197'
+	//spring date-jpa
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	//jpa query log
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.7'
+	//spring cloud config
+	implementation 'org.springframework.cloud:spring-cloud-starter-config:3.0.3'
+	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.0.2'
+	//spring boot actuator
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:2.4.5'
+	//Spring Cloud Bus AMQP
+	implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp:3.0.2'
+	//feign client
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.2'
+	//Resilience4j (Circuit Breaker)
+	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
